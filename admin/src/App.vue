@@ -1,9 +1,17 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import axios from "axios"
+const login = () => {
+  axios.get('/users').then((res) => {
+    console.log(res);
+
+  })
+}
 </script>
 
 <template>
+  <button @click="login">登录</button>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 

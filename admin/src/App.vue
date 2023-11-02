@@ -2,13 +2,13 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import axios from "axios"
+const loginForm = {
+  username: 'admin',
+  password: '123456'
+}
 const login = () => {
-  axios.post('/adminapi/user/login', {
-    username: 'admin',
-    password: '123456'
-  }).then((res) => {
+  axios.post('/adminapi/user/login', loginForm).then((res) => {
     console.log(res);
-
   })
 }
 </script>

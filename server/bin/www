@@ -3,12 +3,11 @@
 /**
  * Module dependencies.
  */
-
+require("../config/db.config")
 var app = require('../app');
 var debug = require('debug')('server:server');
 var http = require('http');
 /**引入数据库设置 */
-require("../config/db.config")
 /**
  * Get port from environment and store in Express.
  */

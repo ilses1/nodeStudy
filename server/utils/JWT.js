@@ -14,7 +14,7 @@ const JWT = {
         return jsonwebtoken.sign(value, secret, { expiresIn: exprires })
     },
     // 2.验证
-    vertify(token) {
+    verify(token) {
         // 不要忘记返回
         // try catch 捕获错误，防止程序崩溃
         try {

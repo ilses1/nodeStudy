@@ -42,7 +42,7 @@ app.use((req, res, next) => {
   const token = req.headers.authorization.split(' ')[1]//分割bearer，获取之后的token
   if (token) {
     // 没过期返回新token
-    const payload = JWt.vertify(token)//获取信息
+    const payload = JWt.verify(token)//获取信息
     if (payload) {
       const newToken = JWT.generate({
         _id: payload._id,

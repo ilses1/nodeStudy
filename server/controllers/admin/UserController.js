@@ -21,29 +21,31 @@ const UserController = {
                 username: result[0].username
             })
             // token放入请求头
-            res.headers('Authorization',token)
+            res.headers('Authorization', token)
             res.send({
                 code: '0',
                 actionType: 'ok'
             })
         }
-    }
-    // login: async (req, res) => {
-    //     console.log(req.body,'req.body')
-    //     //req.body 
-    //     var result = await UserService.login(req.body)
+    },
+    upload: async (req, res) => {
+        const { username, introduction, gender } = req.body
+        // 获取token
+        const token = req.headers.authorization.split(' ')[1]
+        const payload = JWT.verify(token)
+        const avatar = `/avatwrUploads/${req.body.file.filename}`
 
-    //     if (result.length === 0) {
-    //         res.send({
-    //             code: "-1",
-    //             error: "用户名密码不匹配"
-    //         })
-    //     } else {
-    //         res.send({
-    //             ActionType: "OK"
-    //         })
-    //     }
-    // }
+        // 调用service更新数据
+        await UserService.upload({ _id: payload._id, username, introduction, gender: Number(gender), avatar })
+
+        //   成功返回数据
+        res.send({ actionType: "ok", data: {
+            username,
+            introduction,
+            gender: Number(gender),
+            avatar
+        } })
+    }
 }
 
 module.exports = UserController

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
 import axios from "axios"
 const loginForm = {
   username: 'admin',
@@ -10,10 +9,15 @@ const login = () => {
     console.log(res);
   })
 }
+
+const upload = () => {
+  axios.post('/adminapi/user/upload', {})
+}
 </script>
 
 <template>
   <button @click="login">登录</button>
+  <button @click="upload">上传</button>
 </template>
 
 <style scoped>

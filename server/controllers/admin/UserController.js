@@ -2,7 +2,7 @@
  * @description
  */
 
-const jwt = require('../../utils/JWT')
+const JWT = require('../../utils/JWT')
 const UserService = require("../../services/UserService")
 
 const UserController = {
@@ -39,12 +39,28 @@ const UserController = {
         await UserService.upload({ _id: payload._id, username, introduction, gender: Number(gender), avatar })
 
         //   成功返回数据
-        res.send({ actionType: "ok", data: {
-            username,
-            introduction,
-            gender: Number(gender),
-            avatar
-        } })
+        res.send({
+            actionType: "ok", data: {
+                username,
+                introduction,
+                gender: Number(gender),
+                avatar
+            }
+        })
+    },
+    add: async (req, res) => {
+        const { username, introduction, gender, role, password } = req.body
+        // 从token中获取用户id
+        const payload = JWT.verify(req.headers.authorization.split(' ')[1])
+        // 处理用户头像
+        const avatar = req.file ? `/avatarUploads/${req.file.filename}` : ""
+        // 调用service层
+        await UserService.add({ id: payload._id, username, introduction, gender: Number(gender), avatar, role: Number(role), password })
+        // 返回前端数据
+        res.send({
+            actionType: "ok",
+        })
+
     }
 }
 

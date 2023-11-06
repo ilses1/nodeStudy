@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 
 const UserRouter = require('./routes/admin/UserRouter');
+const NewsRouter = require('./routes/admin/NewsRouter');
 const JWT = require('./utils/JWT');
 
 var app = express();
@@ -62,6 +63,7 @@ app.use((req, res, next) => {
   }
 })
 
+app.use(NewsRouter)//要想req.body不为undefined 需要把路由放在express。json解析后，但是放在json解析后，前端会报500的错误
 app.use(UserRouter)//要想req.body不为undefined 需要把路由放在express。json解析后，但是放在json解析后，前端会报500的错误
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

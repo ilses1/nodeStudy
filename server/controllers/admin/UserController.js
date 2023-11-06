@@ -7,7 +7,7 @@ const UserService = require("../../services/UserService")
 
 const UserController = {
     login: async (req, res) => {
-        console.log(req, 'req.body,UserController')
+        console.log(req.body, 'req.body,UserController')
         var result = await UserService.login(req.body)
         if (result.length === 0) {
             res.send({

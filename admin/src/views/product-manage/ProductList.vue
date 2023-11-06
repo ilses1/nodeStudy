@@ -73,7 +73,7 @@ const handleEdit = (item) => {
     margin-top: 50px;
 }
 
-::v-deep .htmlcontent {
+:deep(.htmlcontent) {
     img {
         max-width: 100%;
     }

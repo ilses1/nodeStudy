@@ -29,8 +29,8 @@ import { ElMessage } from 'element-plus'
 import { useStore } from '@/stores/index'
 const store = useStore()
 const loginForm = reactive({
-  username: "",
-  password: ""
+  username: "admin",
+  password: "123456"
 })// 表单绑定的响应式对象
 const loginFormRef = ref() //表单的引用对象
 
@@ -58,8 +58,8 @@ const submitForm = () => {
         console.log(res.data)
         if (res.data.ActionType === "OK") {
           // console.log(res.data.data)
-          store.changeUserInfo( res.data.data)
-          store.changeGetterRouter( false)
+          store.changeUserInfo(res.data.data)
+          store.changeGetterRouter(false)
           router.push("/index")
         } else {
           ElMessage.error('用户名和密码不匹配')
@@ -175,7 +175,7 @@ const options = {
   }
 }
 
-::v-deep .el-form-item__label {
+:deep(.el-form-item__label) {
   color: white;
 }
 </style>    

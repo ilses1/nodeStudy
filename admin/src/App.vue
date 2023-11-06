@@ -1,85 +1,24 @@
-<script setup lang="ts">
-import axios from "axios"
-const loginForm = {
-  username: 'admin',
-  password: '123456'
-}
-const login = () => {
-  axios.post('/adminapi/user/login', loginForm).then((res) => {
-    console.log(res);
-  })
-}
-
-const upload = () => {
-  axios.post('/adminapi/user/upload', {})
-}
-</script>
-
 <template>
-  <button @click="login">登录</button>
-  <button @click="upload">上传</button>
+  <router-view/>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+<style lang="scss">
+*{
+  margin:0;
+  padding:0
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+::-webkit-scrollbar{
+  width: 5px;
+  height: 5px;
+  position: absolute;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+::-webkit-scrollbar-thumb{
+  background:#1890ff;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+::-webkit-scrollbar-track{
+  background:#ddd;
 }
 </style>

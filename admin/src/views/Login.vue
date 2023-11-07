@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <Particles id="tsparticles" :options="options" />
+    <Particles id="tsparticles" :particlesInit="particlesInit" :particlesLoaded="particlesLoaded" :options="options" />
 
     <div class="formContainer">
       <h3>企业门户网站管理系统</h3>
@@ -27,6 +27,16 @@ import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { useStore } from '@/stores/index'
+import { loadSlim } from "tsparticles-slim";
+import type { Engine } from 'tsparticles-engine'
+const particlesInit = async (engine: Engine) => {
+  //await loadFull(engine);
+  await loadSlim(engine);
+};
+
+const particlesLoaded = async (container: any) => {
+  console.log("Particles container loaded", container);
+};
 const store = useStore()
 const loginForm = reactive({
   username: "admin",
@@ -50,7 +60,7 @@ const router = useRouter()
 //提交表单函数
 const submitForm = () => {
   //1. 校验表单
-  loginFormRef.value.validate((valid) => {
+  loginFormRef.value.validate((valid: any) => {
     console.log(valid)
     if (valid) {
 

@@ -10,6 +10,7 @@ import 'element-plus/dist/index.css'
 import Particles from "particles.vue3";
 import "./utils/aixos.config"
 
+
 const pinia = createPinia()
 const app = createApp(App)
 

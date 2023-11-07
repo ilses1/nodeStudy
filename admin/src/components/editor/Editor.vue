@@ -4,7 +4,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, defineEmits, defineProps } from "vue";
+import { onMounted } from "vue";
 import E from "wangeditor";
 const emit = defineEmits(["event"])
 

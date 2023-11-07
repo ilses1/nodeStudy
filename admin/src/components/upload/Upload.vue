@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
 import { Plus } from "@element-plus/icons-vue";
-import { defineEmits, defineProps, computed } from 'vue'
+import {  computed } from 'vue'
 //每次选择完图片之后的回调
 
 const props = defineProps<{

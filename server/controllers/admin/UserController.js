@@ -18,7 +18,7 @@ const UserController = {
             const token = JWT.generate({
                 _id: result[0]._id,
                 username: result[0].username
-            }, '10s')
+            }, '24h')
             // token放入请求头
             res.header("Authorization", token)
 
@@ -38,16 +38,18 @@ const UserController = {
     upload: async (req, res) => {
         const { username, introduction, gender } = req.body
         // 获取token
+      
         const token = req.headers.authorization.split(' ')[1]
         const payload = JWT.verify(token)
-        const avatar = `/avatwrUploads/${req.body.file.filename}`
+ 
+        const avatar = `/avatwrUploads/${req.file.filename}`
 
         // 调用service更新数据
         await UserService.upload({ _id: payload._id, username, introduction, gender: Number(gender), avatar })
 
         //   成功返回数据
         res.send({
-            actionType: "ok", data: {
+            ActionType: "OK", data: {
                 username,
                 introduction,
                 gender: Number(gender),

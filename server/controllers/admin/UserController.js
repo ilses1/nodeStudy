@@ -7,7 +7,6 @@ const UserService = require("../../services/UserService")
 
 const UserController = {
     login: async (req, res) => {
-        console.log(req.body, 'req.body,UserController')
         var result = await UserService.login(req.body)
         if (result.length === 0) {
             res.send({
@@ -16,15 +15,16 @@ const UserController = {
             })
         } else {
             // 登录成功后，生成token返回token
-            const token = JWT.generateToken({
-                _id: result[0].id,
+            const token = JWT.generate({
+                _id: result[0]._id,
                 username: result[0].username
-            })
+            }, '10s')
             // token放入请求头
-            res.headers('Authorization', token)
+            res.header("Authorization", token)
+
             res.send({
                 code: '0',
-                actionType: 'ok'
+                ActionType: 'ok'
             })
         }
     },

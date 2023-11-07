@@ -2,10 +2,11 @@ const UserModel = require("../models/UserModel");
 
 const UserService = {
     // 1.登录
-    login: async (username, userpassword) => {
+    login: async ({ username, password }) => {
+        console.log('service层接收de 数据', username, password);
         // 数据库查询
         return UserModel.find({
-            username, userpassword
+            username, password
         })
     },
     // 2.上传 更新

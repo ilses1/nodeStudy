@@ -14,7 +14,8 @@ export const useStore = defineStore('counter', () => {
     isCollapsed.value = !isCollapsed.value
   }
   const changeUserInfo = (value: object) => {
-    Object.assign({}, userInfo.value, value)
+    Object.assign(userInfo.value, value)
+
   }
   const clearUserInfo = () => {
     userInfo.value = {} as UserType

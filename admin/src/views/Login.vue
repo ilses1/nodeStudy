@@ -67,7 +67,6 @@ const submitForm = () => {
       axios.post("/adminapi/user/login", loginForm).then(res => {
         console.log(res.data)
         if (res.data.ActionType === "OK") {
-          // console.log(res.data.data)
           store.changeUserInfo(res.data.data)
           store.changeGetterRouter(false)
           router.push("/index")

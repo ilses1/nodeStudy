@@ -9,6 +9,7 @@ const UserRouter = require('./routes/admin/UserRouter');
 const NewsRouter = require('./routes/admin/NewsRouter');
 const JWT = require('./utils/JWT');
 
+
 var app = express();
 /*
  /adminapi/* - 后台系统用的
@@ -43,7 +44,7 @@ app.use((req, res, next) => {
   const token = req.headers.authorization.split(' ')[1]//分割bearer，获取之后的token
   if (token) {
     // 没过期返回新token
-    const payload = JWt.verify(token)//获取信息
+    const payload = JWT.verify(token)//获取信息
     if (payload) {
       const newToken = JWT.generate({
         _id: payload._id,
@@ -56,11 +57,7 @@ app.use((req, res, next) => {
       // 过期返回过期
       res.status(401).send({ code: 401, msg: 'token过期' })
     }
-
-
-
-
-  }
+  } 
 })
 app.use(UserRouter)
 app.use(NewsRouter)

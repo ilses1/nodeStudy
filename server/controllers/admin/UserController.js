@@ -24,7 +24,7 @@ const UserController = {
 
             res.send({
                 code: '0',
-                ActionType: 'ok'
+                ActionType: 'OK'
             })
         }
     },

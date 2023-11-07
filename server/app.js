@@ -21,15 +21,15 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // 1. 配置静态文件服务
-app.use(express.static(path.join(__dirname, 'public')));
 
 //2. 配置 express.json() 中间件，确保在路由之前
 app.use(logger('dev'));
-
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // 3. 配置路由或其他中间件
-
 // token授权处理中间件
 app.use((req, res, next) => {
   // 如果token没过期 next
@@ -62,12 +62,8 @@ app.use((req, res, next) => {
 
   }
 })
-
-app.use(NewsRouter)//要想req.body不为undefined 需要把路由放在express。json解析后，但是放在json解析后，前端会报500的错误
-app.use(UserRouter)//要想req.body不为undefined 需要把路由放在express。json解析后，但是放在json解析后，前端会报500的错误
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(UserRouter)
+app.use(NewsRouter)
 
 
 

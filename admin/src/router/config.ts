@@ -12,34 +12,54 @@ import NotFound from '../views/notfound/NotFound.vue'
 const routes = [
     {
         path: "/index",
-        component: Home
+        component: Home,
+        meta: { title: '主页' }
+
     },
     {
         path: "/center",
-        component: Center
+        component: Center,
+        meta: {
+            title: '个人中心'
+        }
     },
     {
         path: "/user-manage/adduser",
         component: UserAdd,
-        requireAdmin: true
+        requireAdmin: true,
+        meta: {
+            title: '添加用户'
+        }
     },
     {
         path: "/user-manage/userlist",
         component: UserList,
-        requireAdmin: true
+        requireAdmin: true,
+        meta: {
+            title: '用户列表'
+        }
     },
 
     {
         path: "/news-manage/addnews",
-        component: NewsAdd
+        component: NewsAdd,
+        meta: {
+            title: '添加新闻'
+        }
     },
     {
         path: "/news-manage/newslist",
-        component: NewsList
+        component: NewsList,
+        meta: {
+            title: '新闻列表'
+        }
     },
     {
         path: "/news-manage/editnews/:id",
-        component: NewsEdit
+        component: NewsEdit,
+        meta: {
+            title: '编辑新闻'
+        }
     },
 
     {
@@ -48,21 +68,33 @@ const routes = [
     },
     {
         path: "/product-manage/productlist",
-        component: ProductList
+        component: ProductList,
+        meta: {
+            title: '产品列表'
+        }
     },
 
     {
         path: "/product-manage/editproduct/:id",
-        component: ProductEdit
+        component: ProductEdit,
+        meta: {
+            title: '编辑产品'
+        }
     },
     {
         path: "/",
-        redirect: "/index"
+        redirect: "/index",
+        meta: {
+            title: '首页'
+        }
     },
     {
         path: "/:pathMatch(.*)*",
         name: "Notfound",
-        component: NotFound
+        component: NotFound,
+        meta: {
+            title: '404'
+        }
     }
 ]
 

@@ -7,12 +7,15 @@ const routes = [
   {
     path: "/login",
     name: "login",
-    component: Login
+    component: Login,
+    meta: { title: '登录' }
   },
   {
     path: "/mainbox",
     name: "mainbox",
-    component: MainBox
+    component: MainBox,
+    meta: { title: '主页' }
+
   }
   //mainbox的嵌套路由, 后面根据权限动态添加
 ]
@@ -24,6 +27,9 @@ const router = createRouter({
 //每次路由跳转之前
 router.beforeEach((to, from, next) => {
   const store = useStore()
+
+  document.title = to.meta.title as string + `${store.userInfo.username ? "-" + store.userInfo.username : ""
+    } `; // 设置页面标题为当前路由的 meta.title 
   if (to.name === "login") {
     next()
   } else {
@@ -50,6 +56,8 @@ router.beforeEach((to, from, next) => {
     }
   }
 })
+
+
 
 const ConfigRouter = () => {
   const store = useStore()

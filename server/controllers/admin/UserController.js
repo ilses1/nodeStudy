@@ -83,7 +83,7 @@ const UserController = {
     }
     ,
     getList: async (req, res) => {
-        const result = await UserService.getList()
+        const result = await UserService.getList(req.params)
         res.send({
             ActionType: "OK",
             data: result
@@ -96,6 +96,12 @@ const UserController = {
         res.send({
             ActionType: "OK",
             data: result
+        })
+    },
+    putList: async (req, res) => {
+        const result = await UserService.putList(req.body)
+        res.send({
+            ActionType: "OK"
         })
     }
 }

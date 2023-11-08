@@ -26,13 +26,17 @@ const UserService = {
         UserModel.create({ username, introduction, gender, avatar, role, password })
     },
     // 4.获取用户列表
-    getList: async () => {
+    getList: async ({ id }) => {
         // 返回所有数据
-        return UserModel.find();
+        return id ? UserModel.find({ _id: id }, ['username', 'role', 'introduction', 'password']) : UserModel.find({}, ['username', 'role', 'avatar', 'introduction', 'gender']);
     },
     //5 .删除某一用户
     delList: async ({ _id }) => {
         return UserModel.deleteOne({ _id })
+    },
+    // 6.更新某一用户信息
+    putList: async (body) => {
+        return UserModel.updateOne({ _id: body._id }, body)
     }
 }
 

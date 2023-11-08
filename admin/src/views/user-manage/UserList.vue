@@ -114,7 +114,7 @@ const handleEdit = async data => {
     // console.log(data);
     //   userForm
     const res = await axios.get(`/adminapi/user/list/${data._id}`)
-    console.log(res.data.data)
+    // console.log(res.data.data)
     //   userForm = res.data.data[0]
     Object.assign(userForm, res.data.data[0])
     dialogVisible.value = true;

@@ -74,7 +74,7 @@ const handleChange = file => {
 };
 const router = useRouter()
 const submitForm = () => {
-    userFormRef.value.validate(async (valid) => {
+    userFormRef.value.validate(async (valid: any) => {
         if (valid) {
             //提交数据到后端
             // console.log(userForm)

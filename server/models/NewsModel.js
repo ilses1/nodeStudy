@@ -10,7 +10,7 @@ const Schema = mongoose.Schema//数据库模式
 const NewsType = {
     title: String,
     content: String,
-    catetory: Number,//种类 0，1，2
+    category: Number,//种类 0，1，2
     isPublish: Number,//是否发布
     cover: String,//封面
     editTime: Number//编辑时间

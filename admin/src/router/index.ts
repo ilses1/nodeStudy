@@ -81,7 +81,7 @@ const ConfigRouter = () => {
 const checkPermission = (item: any) => {
   const store = useStore()
   if (item.requireAdmin) {
-    return store.changeUserInfo({ role: 1 })
+    return store.userInfo.role === 1
   }
   return true
 }

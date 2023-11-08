@@ -24,6 +24,15 @@ const UserService = {
         // 数据库更新一个
         // 判断是否有头像，有则更新，无则不更新头像
         UserModel.create({ username, introduction, gender, avatar, role, password })
+    },
+    // 4.获取用户列表
+    getList: async () => {
+        // 返回所有数据
+        return UserModel.find();
+    },
+    //5 .删除某一用户
+    delList: async ({ _id }) => {
+        return UserModel.deleteOne({ _id })
     }
 }
 

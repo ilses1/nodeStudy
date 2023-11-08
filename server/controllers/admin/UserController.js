@@ -68,6 +68,7 @@ const UserController = {
     },
     add: async (req, res) => {
         const { username, introduction, gender, role, password } = req.body
+
         // 从token中获取用户id
         const payload = JWT.verify(req.headers.authorization.split(' ')[1])
         // 处理用户头像
@@ -76,9 +77,26 @@ const UserController = {
         await UserService.add({ id: payload._id, username, introduction, gender: Number(gender), avatar, role: Number(role), password })
         // 返回前端数据
         res.send({
-            actionType: "ok",
+            ActionType: "OK",
         })
 
+    }
+    ,
+    getList: async (req, res) => {
+        const result = await UserService.getList()
+        res.send({
+            ActionType: "OK",
+            data: result
+        })
+    },
+    delList: async (req, res) => {
+        // url上参数
+        // console.log(req.params.id);
+        const result = await UserService.delList({ _id: req.params.id })
+        res.send({
+            ActionType: "OK",
+            data: result
+        })
     }
 }
 

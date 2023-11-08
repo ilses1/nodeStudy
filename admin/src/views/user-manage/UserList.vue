@@ -20,7 +20,7 @@
                 <el-table-column label="角色">
                     <template #default="scope">
                     <!-- {{scope.row.role===1?'管理员':'编辑'}}
-                             -->
+                                 -->
                         <el-tag v-if="scope.row.role === 1" class="ml-2" type="danger">管理员</el-tag>
 
                         <el-tag v-else class="ml-2" type="success">编辑</el-tag>
@@ -110,6 +110,7 @@ const getTableData = async () => {
     tableData.value = res.data.data;
 };
 //编辑回调
+//@ts-ignore
 const handleEdit = async data => {
     // console.log(data);
     //   userForm
@@ -121,10 +122,11 @@ const handleEdit = async data => {
 };
 //编辑确认回调
 const handleEditConfirm = () => {
-    userFormRef.value.validate(async (valid) => {
+    userFormRef.value.validate(async (valid: any) => {
         if (valid) {
             // console.log(userForm)
             //1- 更新后端
+            //@ts-ignore
             await axios.put(`/adminapi/user/list/${userForm._id}`, userForm)
             //2- dialog隐藏
             dialogVisible.value = false
@@ -134,7 +136,7 @@ const handleEditConfirm = () => {
     })
 }
 
-const handleDelete = async data => {
+const handleDelete = async (data: { _id: any; }) => {
     //   console.log(data);
     await axios.delete(`/adminapi/user/list/${data._id}`);
 

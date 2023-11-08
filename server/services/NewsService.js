@@ -2,11 +2,15 @@ const NewsModel = require("../models/NewsModel");
 
 const NewsService = {
     add: ({
-        title, content, category, ispublish, cover, editTime
+        title, content, category, isPublish, cover, editTime
     }) => {
+
         return NewsModel.create({
-            title, content, category, ispublish, cover, editTime
+            title, content, category, isPublish, cover, editTime
         })
+    },
+    getList: () => {
+        return NewsModel.find()
     }
 
 }

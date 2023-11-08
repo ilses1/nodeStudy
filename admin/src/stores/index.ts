@@ -29,4 +29,10 @@ export const useStore = defineStore('counter', () => {
     changeUserInfo,
     clearUserInfo
   }
-})
+},
+  {
+    persist: {
+      storage: localStorage,
+      paths: ['userInfo'],
+    },
+  })

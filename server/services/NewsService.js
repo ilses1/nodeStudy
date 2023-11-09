@@ -11,6 +11,9 @@ const NewsService = {
     },
     getList: () => {
         return NewsModel.find()
+    },
+    publish: ({ _id, isPublish }) => {
+        return NewsModel.updateOne({ _id }, { isPublish })
     }
 
 }

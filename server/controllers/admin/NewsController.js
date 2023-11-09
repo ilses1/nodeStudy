@@ -8,7 +8,7 @@ const JWT = require('../../utils/JWT')
 const NewsController = {
     add: async (req, res) => {
         const { title, content, category, isPublish } = req.body
-       
+
         // 从token中获取用户id
         const payload = JWT.verify(req.headers.authorization.split(' ')[1])
         // 处理用户头像
@@ -33,6 +33,13 @@ const NewsController = {
             data: result
         })
 
+    },
+    publish: async (req, res) => {
+        const result = await NewsService.publish(req.body)
+
+        res.send({
+            ActionType: "OK",
+        })
     }
 }
 

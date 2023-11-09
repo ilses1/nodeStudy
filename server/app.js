@@ -7,6 +7,7 @@ var logger = require('morgan');
 
 const UserRouter = require('./routes/admin/UserRouter');
 const NewsRouter = require('./routes/admin/NewsRouter');
+const ProductRouter = require('./routes/admin/ProductRouter');
 const JWT = require('./utils/JWT');
 
 
@@ -57,10 +58,11 @@ app.use((req, res, next) => {
       // 过期返回过期
       res.status(401).send({ code: 401, msg: 'token过期' })
     }
-  } 
+  }
 })
 app.use(UserRouter)
 app.use(NewsRouter)
+app.use(ProductRouter)
 
 
 

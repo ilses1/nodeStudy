@@ -35,7 +35,7 @@ const NewsController = {
 
     },
     publish: async (req, res) => {
-        const result = await NewsService.publish(req.body)
+        const result = await NewsService.publish({ ...req.body, editTime: new Date() })
 
         res.send({
             ActionType: "OK",

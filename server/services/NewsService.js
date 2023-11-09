@@ -14,6 +14,9 @@ const NewsService = {
     },
     publish: ({ _id, isPublish, editTime }) => {
         return NewsModel.updateOne({ _id }, { isPublish, editTime })
+    },
+    delList: ({ _id }) => {
+        return NewsModel.deleteOne({ _id })
     }
 
 }

@@ -40,6 +40,13 @@ const NewsController = {
         res.send({
             ActionType: "OK",
         })
+    },
+    delList: async (req, res) => {
+        const result = await NewsService.delList({ _id: req.params.id })
+        res.send({
+            ActionType: "OK",
+            data: result
+        })
     }
 }
 

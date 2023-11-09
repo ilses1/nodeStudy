@@ -64,7 +64,15 @@ import { Star, Edit, Delete, StarFilled } from "@element-plus/icons-vue";
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const tableData = ref([]);
-const previewData = ref({});
+const previewData = ref<{
+    title?: string;
+    content?: string;
+    editTime: number;
+}>({
+    title: "",
+    content: "",
+    editTime: 0,
+});
 const dialogVisible = ref(false);
 onMounted(() => {
     getTableData();
@@ -77,7 +85,7 @@ const getTableData = async () => {
 };
 
 //格式化分类信息
-const categoryFormat = category => {
+const categoryFormat = (category: number) => {
     const arr = ["最新动态", "典型案例", "通知公告"];
     return arr[category - 1];
 };
@@ -102,7 +110,6 @@ const handlePreview = data => {
 
 //删除回调
 const handleDelete = async (item) => {
-    // console.log(item)
     await axios.delete(`/adminapi/news/list/${item._id}`)
     await getTableData()
 }

@@ -27,7 +27,7 @@ const NewsController = {
     },
     getList: async (req, res) => {
 
-        const result = await NewsService.getList()
+        const result = await NewsService.getList({ _id: req.params.id })
         res.send({
             ActionType: "OK",
             data: result

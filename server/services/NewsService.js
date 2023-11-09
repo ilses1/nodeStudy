@@ -9,8 +9,8 @@ const NewsService = {
             title, content, category, isPublish, cover, editTime
         })
     },
-    getList: () => {
-        return NewsModel.find()
+    getList: ({ _id }) => {
+        return _id ? NewsModel.find({ _id }) : NewsModel.find()
     },
     publish: ({ _id, isPublish, editTime }) => {
         return NewsModel.updateOne({ _id }, { isPublish, editTime })

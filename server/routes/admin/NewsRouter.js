@@ -7,6 +7,7 @@ const upload = multer({ dest: 'public/newsUploads/' })
 // 设计文件上传，需要加上multer中间件
 NewsRouter.post('/adminapi/news/add', upload.single("file"), NewsController.add);
 NewsRouter.get('/adminapi/news/list', NewsController.getList);
+NewsRouter.post('/adminapi/news/list', upload.single("file"), NewsController.updateList);
 NewsRouter.get('/adminapi/news/list/:id', NewsController.getList);
 NewsRouter.delete('/adminapi/news/list/:id', NewsController.delList);
 NewsRouter.put('/adminapi/news/publish', NewsController.publish);

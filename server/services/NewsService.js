@@ -17,6 +17,12 @@ const NewsService = {
     },
     delList: ({ _id }) => {
         return NewsModel.deleteOne({ _id })
+    },
+    updateList: async ({ _id, title, content, category, isPublish, cover, editTime }) => {
+        console.log({ _id, title, content, category, isPublish, cover, editTime });
+
+        return cover ? NewsModel.updateOne({ _id }, { title, content, category, isPublish, editTime, cover }) :
+            NewsModel.updateOne({ _id }, { title, content, category, isPublish, editTime })
     }
 
 }

@@ -64,7 +64,10 @@ const routes = [
 
     {
         path: "/product-manage/addproduct",
-        component: ProductAdd
+        component: ProductAdd,
+        meta: {
+            title: '添加产品'
+        }
     },
     {
         path: "/product-manage/productlist",
